@@ -1,0 +1,66 @@
+
+FUNCTION isVowel(c: CHAR) : BOOLEAN
+
+VAR
+ ch: CHAR;
+   
+BEGIN
+  ch := lowercase(c);
+
+   IF (ch == 'a' OR ch == 'e' OR ch == 'i' OR ch == 'o' OR ch == 'u' OR ch == 'y') THEN
+          RETURN TRUE;
+           
+   ELSE
+          RETURN FALSE;
+           
+   END_IF
+END
+
+
+FUNCTION isWordStart(c: CHAR , previous: CHAR) : BOOLEAN
+
+BEGIN
+    IF (c <> ' ' AND previous == ' ') THEN
+        RETURN TRUE;
+    ELSE
+        RETURN FALSE;
+    END_IF
+END
+
+
+
+ALGORITHM sentenceCount
+VAR
+    c : CHAR;
+    previous : CHAR;
+    char_counter, word_counter , vowel_counter : INTEGER;
+BEGIN
+    char_counter:= 0;
+    word_counter := 0;
+    vowel_counter := 0;
+    previous := ' ';
+    
+    WRITE("Enter a sentence ending with a . :");
+    READ(c);
+
+    WHILE (c <> '.' ) DO
+        char_counter := char_counter + 1 ;  
+
+       
+        IF (isVowel(c)) THEN
+            vowel_counter := vowel_counter + 1 ;
+        END_IF
+
+         IF (isWordStart(c, previous)) THEN
+            word_counter := word_counter + 1 ;
+        END_IF
+        previous := c;
+        READ(c);
+    END_WHILE
+
+
+    WRITE("Length of the sentence:", char_counter);
+    WRITE("Number of words:", word_counter);
+    WRITE("Number of vowels:", vowel_counter);
+
+END
