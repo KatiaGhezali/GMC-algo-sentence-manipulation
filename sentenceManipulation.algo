@@ -1,11 +1,12 @@
 
 FUNCTION isVowel(c: CHAR) : BOOLEAN
+// Returns TRUE if character c is a vowel, else it returns FALSE
 
 VAR
  ch: CHAR;
    
 BEGIN
-  ch := lowercase(c);
+  ch := lowercase(c);  // To compare, we convert the characters to lowercase
 
    IF (ch == 'a' OR ch == 'e' OR ch == 'i' OR ch == 'o' OR ch == 'u' OR ch == 'y') THEN
           RETURN TRUE;
@@ -18,6 +19,7 @@ END
 
 
 FUNCTION isWordStart(c: CHAR , previous: CHAR) : BOOLEAN
+// Returns TRUE if character c is the start of a new word, we consider the start of a word if c is not a space and the previous character was a space.
 
 BEGIN
     IF (c <> ' ' AND previous == ' ') THEN
@@ -31,14 +33,14 @@ END
 
 ALGORITHM sentenceCount
 VAR
-    c : CHAR;
-    previous : CHAR;
-    char_counter, word_counter , vowel_counter : INTEGER;
+    c : CHAR; // Current character being read
+    previous : CHAR;  // Previous character read
+    char_counter, word_counter , vowel_counter : INTEGER;  // Counters of characters, words and vowels
 BEGIN
     char_counter:= 0;
     word_counter := 0;
     vowel_counter := 0;
-    previous := ' ';
+    previous := ' ';  // We initialize previous as a space to count the first word
     
     WRITE("Enter a sentence ending with a . :");
     READ(c);
